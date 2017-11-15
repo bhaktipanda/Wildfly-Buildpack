@@ -48,7 +48,7 @@ describe JavaBuildpack::Container::Jboss do
 
     component.compile
 
-    configuration = sandbox + 'standalone/configuration/standalone.xml'
+    configuration = sandbox + 'standalone/configuration/standalone-full-ha.xml'
     expect(configuration).to exist
 
     contents = configuration.read
@@ -56,13 +56,13 @@ describe JavaBuildpack::Container::Jboss do
     expect(contents).to include('<virtual-server name="default-host" enable-welcome-root="false">')
   end
 
-  it 'creates a "ROOT.war.dodeploy" in the deployments directory',
+  it 'creates a "syntbots.war.dodeploy" in the deployments directory',
      app_fixture:   'container_tomcat',
      cache_fixture: 'stub-jboss.tar.gz' do
 
     component.compile
 
-    expect(sandbox + 'standalone/deployments/ROOT.war.dodeploy').to exist
+    expect(sandbox + 'standalone/deployments/syntbots.war.dodeploy').to exist
   end
 
   it 'copies only the application files and directories to the ROOT webapp',
@@ -73,7 +73,7 @@ describe JavaBuildpack::Container::Jboss do
 
     component.compile
 
-    root_webapp = app_dir + '.java-buildpack/jboss/standalone/deployments/ROOT.war'
+    root_webapp = app_dir + '.java-buildpack/jboss/standalone/deployments/syntbots.war'
 
     web_inf = root_webapp + 'WEB-INF'
     expect(web_inf).to exist
