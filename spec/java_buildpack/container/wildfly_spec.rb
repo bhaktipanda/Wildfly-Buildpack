@@ -56,13 +56,13 @@ describe JavaBuildpack::Container::Wildfly do
     expect(contents).to include('<virtual-server name="default-host" enable-welcome-root="false">')
   end
 
-  it 'creates a "ROOT.war.dodeploy" in the deployments directory',
+  it 'creates a "ROOT.war.undeployed" in the deployments directory',
      app_fixture:   'container_tomcat',
      cache_fixture: 'stub-jboss.tar.gz' do
 
     component.compile
 
-    expect(sandbox + 'standalone/deployments/ROOT.war.dodeploy').to exist
+    expect(sandbox + 'standalone/deployments/ROOT.war.undeployed').to exist
   end
 
   it 'copies only the application files and directories to the ROOT webapp',
