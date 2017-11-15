@@ -63,15 +63,15 @@ module JavaBuildpack
       end
 
       def create_dodeploy
-        FileUtils.touch(webapps + 'ROOT.war.dodeploy')
+        FileUtils.touch(webapps + 'syntbots.war.dodeploy')
       end
 
       def root
-        webapps + 'ROOT.war'
+        webapps + 'syntbots.war'
       end
 
       def update_configuration
-        standalone_config = @droplet.sandbox + 'standalone/configuration/standalone.xml'
+        standalone_config = @droplet.sandbox + 'standalone/configuration/standalone-full-ha.xml'
 
         modified = standalone_config.read
                                     .gsub(/<virtual-server name="default-host" enable-welcome-root="true">/,
