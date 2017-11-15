@@ -48,7 +48,7 @@ describe JavaBuildpack::Container::Wildfly do
 
     component.compile
 
-    configuration = sandbox + 'standalone/configuration/standalone.xml'
+    configuration = sandbox + 'standalone/configuration/standalone-full-ha.xml'
     expect(configuration).to exist
 
     contents = configuration.read
