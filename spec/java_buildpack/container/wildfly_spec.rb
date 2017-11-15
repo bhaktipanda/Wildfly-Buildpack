@@ -56,16 +56,16 @@ describe JavaBuildpack::Container::Wildfly do
     expect(contents).to include('<virtual-server name="default-host" enable-welcome-root="false">')
   end
 
-  it 'creates a "ROOT.war.undeployed" in the deployments directory',
+  it 'creates a "syntbots.war.dodeploy" in the deployments directory',
      app_fixture:   'container_tomcat',
      cache_fixture: 'stub-jboss.tar.gz' do
 
     component.compile
 
-    expect(sandbox + 'standalone/deployments/ROOT.war.undeployed').to exist
+    expect(sandbox + 'standalone/deployments/syntbots.war.dodeploy').to exist
   end
 
-  it 'copies only the application files and directories to the ROOT webapp',
+  it 'copies only the application files and directories to the syntbots webapp',
      app_fixture:   'container_tomcat',
      cache_fixture: 'stub-jboss.tar.gz' do
 
@@ -73,7 +73,7 @@ describe JavaBuildpack::Container::Wildfly do
 
     component.compile
 
-    root_webapp = app_dir + '.java-buildpack/jboss/standalone/deployments/ROOT.war'
+    root_webapp = app_dir + '.java-buildpack/jboss/standalone/deployments/syntbots.war'
 
     web_inf = root_webapp + 'WEB-INF'
     expect(web_inf).to exist
